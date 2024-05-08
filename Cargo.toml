@@ -1,2 +1,12 @@
-cargo new my_project
-cd my_project
+[package]
+name = "CSCI485p2"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+[[bin]]
+name = "CSCI485p2"
+path = "main.rs"
