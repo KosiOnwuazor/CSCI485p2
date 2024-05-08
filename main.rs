@@ -1,7 +1,15 @@
 use std::fs::File;
 use std::io::{self, BufRead};
 use std::path::Path;
-
+/// Reads lines from a file and returns an iterator over the lines.
+/// 
+/// # Arguments
+/// 
+/// * `filename` - A path to the file to read.
+/// 
+/// # Returns
+/// 
+/// An iterator over the lines of the file, wrapped in an `io::Result`.
 fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
 where
     P: AsRef<Path>,
@@ -10,6 +18,16 @@ where
     Ok(io::BufReader::new(file).lines())
 }
 
+/// Computes positions for linear motion between two points.
+/// 
+/// # Arguments
+/// 
+/// * `start` - The starting point of the motion (x, y, z).
+/// * `end` - The ending point of the motion (x, y, z).
+/// 
+/// # Returns
+/// 
+/// A vector containing the computed positions along the linear path.
 fn linear_motion(start: (f64, f64, f64), end: (f64, f64, f64)) -> Vec<String> {
     let mut positions = Vec::new();
     let steps = f64::max(
@@ -24,7 +42,18 @@ fn linear_motion(start: (f64, f64, f64), end: (f64, f64, f64)) -> Vec<String> {
     }
     positions
 }
-
+/// Computes positions for rotational motion around a center point.
+/// 
+/// # Arguments
+/// 
+/// * `position` - The center point of the rotation (x, y).
+/// * `radius` - The radius of the circle.
+/// * `_direction` - The direction of rotation (not used in this implementation).
+/// * `_stop` - The stop point of the rotation (not used in this implementation).
+/// 
+/// # Returns
+/// 
+/// A vector containing the computed positions along the circular path.
 fn rotational_motion(
     position: (f64, f64),
     radius: f64,
